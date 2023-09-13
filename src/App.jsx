@@ -6,12 +6,13 @@ import Navbar from "./components/Navbar/Navbar";
 import SpentOnRead from "./components/SpentOnRead/SpentOnRead";
 
 function App() {
-  const [bookmarkedBlog, setBookmarkedBlog] = useState([]);
+  const [bookmarkedBlogs, setBookmarkedBlogs] = useState([]);
 
   const handleBookmark = (blog) => {
-    setBookmarkedBlog([...bookmarkedBlog, blog]);
+    bookmarkedBlogs.find((bookmarkedBlog) => bookmarkedBlog.id === blog.id) ||
+      setBookmarkedBlogs([...bookmarkedBlogs, blog]);
   };
-  
+
   return (
     <>
       <header className="container mx-auto px-4 md:px-10 lg:px-36">
@@ -23,7 +24,7 @@ function App() {
         </div>
         <div className="w-1/3">
           <SpentOnRead></SpentOnRead>
-          <Bookmarks bookmarkedBlog={bookmarkedBlog}></Bookmarks>
+          <Bookmarks bookmarkedBlogs={bookmarkedBlogs}></Bookmarks>
         </div>
       </main>
     </>
