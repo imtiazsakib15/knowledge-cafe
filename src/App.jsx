@@ -7,10 +7,15 @@ import SpentOnRead from "./components/SpentOnRead/SpentOnRead";
 
 function App() {
   const [bookmarkedBlogs, setBookmarkedBlogs] = useState([]);
+  const [readingTime, setReadingTime] = useState(0);
 
   const handleBookmark = (blog) => {
     bookmarkedBlogs.find((bookmarkedBlog) => bookmarkedBlog.id === blog.id) ||
       setBookmarkedBlogs([...bookmarkedBlogs, blog]);
+  };
+
+  const handleMarkAsRead = (blog) => {
+    setReadingTime(readingTime + blog.reading_time);
   };
 
   return (
@@ -20,10 +25,13 @@ function App() {
       </header>
       <main className="container mx-auto flex gap-6 px-4 md:px-10 lg:px-36">
         <div className="w-2/3">
-          <Blogs handleBookmark={handleBookmark}></Blogs>
+          <Blogs
+            handleBookmark={handleBookmark}
+            handleMarkAsRead={handleMarkAsRead}
+          ></Blogs>
         </div>
         <div className="w-1/3">
-          <SpentOnRead></SpentOnRead>
+          <SpentOnRead readingTime={readingTime}></SpentOnRead>
           <Bookmarks bookmarkedBlogs={bookmarkedBlogs}></Bookmarks>
         </div>
       </main>
