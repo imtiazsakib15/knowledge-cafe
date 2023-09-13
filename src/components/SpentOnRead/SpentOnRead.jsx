@@ -10,6 +10,8 @@ const SpentOnRead = ({ props }) => {
   );
 };
 
-SpentOnRead.propTypes = {};
+SpentOnRead.propTypes = {
+    
+};
 
 export default SpentOnRead;
