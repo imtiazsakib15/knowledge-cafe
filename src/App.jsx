@@ -16,6 +16,10 @@ function App() {
 
   const handleMarkAsRead = (blog) => {
     setReadingTime(readingTime + blog.reading_time);
+    const newBookmarkedBlogs = bookmarkedBlogs.filter(
+      (bookmarkedBlog) => bookmarkedBlog.id !== blog.id
+    );
+    setBookmarkedBlogs(newBookmarkedBlogs);
   };
 
   return (
